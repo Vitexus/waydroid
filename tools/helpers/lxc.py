@@ -208,6 +208,10 @@ def make_base_props(args):
     props.append("waydroid.vendor_ota=" + args.vendor_ota)
     props.append("waydroid.tools_version=" + tools.config.version)
 
+    if args.vendor_type == "MAINLINE":
+        props.append("ro.vndk.lite=true")
+        props.append("ro.hardware.camera=v4l2")
+
     base_props = open(args.work + "/waydroid_base.prop", "w")
     for prop in props:
         base_props.write(prop + "\n")
